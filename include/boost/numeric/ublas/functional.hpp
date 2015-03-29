@@ -36,7 +36,11 @@ namespace boost { namespace numeric { namespace ublas { namespace raw {
 
 #include <boost/numeric/ublas/detail/definitions.hpp>
 
-
+#if defined(_MSC_VER)
+#pragma warning(push)
+#pragma warning(disable: 4127) // conditional expression is constant
+#pragma warning(disable: 4244) // conversion, possible loss of data
+#endif
 
 namespace boost { namespace numeric { namespace ublas {
 
@@ -2062,5 +2066,9 @@ namespace boost { namespace numeric { namespace ublas {
 
 
 }}}
+
+#if defined(_MSC_VER)
+#pragma warning(pop)
+#endif
 
 #endif

@@ -22,6 +22,11 @@
 #include <boost/serialization/array.hpp>
 #include <boost/serialization/nvp.hpp>
 
+#if defined(BOOST_MSVC) // For std::forward in fixed_vector
+#pragma warning(push)
+#pragma warning(disable: 4702) // unreachable code
+#endif
+
 // Iterators based on ideas of Jeremy Siek
 
 namespace boost { namespace numeric { 
@@ -5984,5 +5989,10 @@ namespace boost { namespace numeric {
     };
 
 }}}
+
+#if defined(BOOST_MSVC)
+#include <utility>
+#pragma warning(pop)
+#endif
 
 #endif

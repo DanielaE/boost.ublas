@@ -19,6 +19,10 @@
 #include <cstddef>
 #include "utils.hpp"
 
+#if defined(_MSC_VER)
+#pragma warning(disable: 4127) // conditional expression is constant
+#pragma warning(disable: 4244) // conversion, possible loss of data
+#endif
 
 namespace ublas = boost::numeric::ublas;
 

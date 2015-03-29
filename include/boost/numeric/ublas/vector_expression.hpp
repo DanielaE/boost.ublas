@@ -15,6 +15,10 @@
 
 #include <boost/numeric/ublas/expression_types.hpp>
 
+#if defined(BOOST_MSVC) // For std::forward in fixed_vector
+#pragma warning(push)
+#pragma warning(disable: 4244) // narrowing
+#endif
 
 // Expression templates based on ideas of Todd Veldhuizen and Geoffrey Furnish
 // Iterators based on ideas of Jeremy Siek
@@ -1748,5 +1752,9 @@ namespace boost { namespace numeric { namespace ublas {
     }
 
 }}}
+
+#if defined(BOOST_MSVC)
+#pragma warning(pop)
+#endif
 
 #endif

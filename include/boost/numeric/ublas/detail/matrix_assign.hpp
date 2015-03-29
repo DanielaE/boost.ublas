@@ -19,6 +19,12 @@
 
 // Iterators based on ideas of Jeremy Siek
 
+#if defined(_MSC_VER)
+#pragma warning(push)
+#pragma warning(disable: 4127) // conditional expression is constant
+#pragma warning(disable: 4244) // conversion, possible loss of data
+#endif
+
 namespace boost { namespace numeric { namespace ublas {
 namespace detail {
     
@@ -1002,7 +1008,7 @@ namespace detail {
 #endif
                 if (it2 != it2_end && it2e != it2e_end) {
                     size_type it2_index = it2.index2 (), it2e_index = it2e.index2 ();
-                    while (true) {
+                    for (;;) {
                         difference_type compare2 = it2_index - it2e_index;
                         if (compare2 == 0) {
                             functor_type::apply (*it2, *it2e);
@@ -1634,5 +1640,9 @@ namespace detail {
     }
 
 }}}
+
+#if defined(_MSC_VER)
+#pragma warning(pop)
+#endif
 
 #endif

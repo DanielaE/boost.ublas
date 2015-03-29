@@ -12,6 +12,10 @@
 #include <boost/numeric/ublas/vector_expression.hpp>
 #include <boost/numeric/ublas/matrix_expression.hpp>
 
+#if defined(_MSC_VER)
+#pragma warning(disable: 4244) // conversion, possible loss of data
+#endif
+
 static unsigned _success_counter = 0;
 static unsigned _fail_counter    = 0;
 
@@ -20,6 +24,7 @@ void assertTrue(const char* message, bool condition) {
 #ifndef NOMESSAGES
   std::cout << message;
 #endif
+  (void)message;
   if ( condition ) {
     ++ _success_counter;
     std::cout << "1\n"; // success
@@ -34,6 +39,7 @@ void assertEquals(const char* message, T expected, T actual) {
 #ifndef NOMESSAGES
   std::cout << message;
 #endif
+  (void)message;
   if ( expected == actual ) {
     ++ _success_counter;
     std::cout << "1\n"; // success
@@ -94,7 +100,7 @@ typename AE::value_type mean_square(const boost::numeric::ublas::matrix_expressi
             s += boost::numeric::ublas::scalar_traits<typename AE::value_type>::type_abs(me()(i,j));
         }
     }
-    return s / (me().size1() * me().size2());
+    return static_cast<typename AE::value_type>(s / (me().size1() * me().size2()));
 }
 
 template <class AE>
@@ -105,7 +111,7 @@ typename AE::value_type mean_square(const boost::numeric::ublas::vector_expressi
     for (i=0; i!= ve().size(); i++) {
         s += boost::numeric::ublas::scalar_traits<typename AE::value_type>::type_abs(ve()(i));
     }
-    return s / ve().size();
+    return static_cast<typename AE::value_type>(s / ve().size());
 }
 
 template < class M1, class M2 >

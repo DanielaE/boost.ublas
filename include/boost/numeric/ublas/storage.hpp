@@ -26,6 +26,11 @@
 #include <boost/numeric/ublas/traits.hpp>
 #include <boost/numeric/ublas/detail/iterator.hpp>
 
+#if defined(_MSC_VER)
+#pragma warning(push)
+#pragma warning(disable: 4127) // conditional expression is constant
+#pragma warning(disable: 4100) // unreferenced formal parameter
+#endif
 
 namespace boost { namespace numeric { namespace ublas {
 
@@ -2083,5 +2088,9 @@ namespace boost { namespace numeric { namespace ublas {
     };
 
 }}}
+
+#if defined(_MSC_VER)
+#pragma warning(pop)
+#endif
 
 #endif

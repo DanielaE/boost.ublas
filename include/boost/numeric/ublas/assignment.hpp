@@ -11,6 +11,11 @@
 #include <boost/numeric/ublas/vector_expression.hpp>
 #include <boost/numeric/ublas/matrix_expression.hpp>
 
+#if defined(_MSC_VER)
+#pragma warning(push)
+#pragma warning(disable: 4245) // conversion, signed/unsigned mismatch
+#endif
+
 /*! \file assignment.hpp
     \brief uBlas assignment operator <<=.
 */
@@ -1277,5 +1282,9 @@ matrix_expression_assigner<matrix_expression<E1> > operator<<=(matrix_expression
 }
 
 } } }
+
+#if defined(_MSC_VER)
+#pragma warning(pop)
+#endif
 
 #endif // ASSIGNMENT_HPP
