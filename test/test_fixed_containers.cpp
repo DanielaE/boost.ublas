@@ -10,6 +10,11 @@
 #include <iomanip>
 #include "utils.hpp"
 
+#if defined(_MSC_VER)
+#pragma warning(disable: 4244) // conversion, possible loss of data
+#pragma warning(disable: 4702) // unreachable code
+#endif
+
 #ifdef BOOST_UBLAS_CPP_GE_2011
 
 using namespace boost::numeric::ublas;
@@ -29,7 +34,7 @@ bool test_vector( std::string type_name)
     {
         typedef fixed_vector<T, 1> vec1;
 
-        vec1 v1( 122.0 );
+        vec1 v1( (T)122 );
 
         pass &= ( v1(0) == (T)122 );
 

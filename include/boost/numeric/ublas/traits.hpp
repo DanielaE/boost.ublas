@@ -38,7 +38,7 @@ namespace {
   template<class T> T boost_numeric_ublas_sqrt (const T& t) {
     using namespace std;
     // we'll find either std::sqrt or else another version via ADL:
-    return sqrt (t);
+    return static_cast<T>(sqrt (t));
   }
 
 template<typename T>
@@ -46,7 +46,7 @@ inline typename boost::disable_if<
     boost::is_unsigned<T>, T >::type
     boost_numeric_ublas_abs (const T &t ) {
         using namespace std;
-        return abs( t );
+        return static_cast<T>(abs( t ));
     }
 
 template<typename T>

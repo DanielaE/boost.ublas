@@ -18,6 +18,10 @@
 #include "common/testhelper.hpp"
 #include "utils.hpp"
 
+#if defined(_MSC_VER)
+#pragma warning(disable: 4267) // conversion, possible loss of data
+#endif
+
 using namespace boost::numeric::ublas;
 
 template <class V>
@@ -775,6 +779,4 @@ int main () {
     BOOST_UBLAS_TEST_DO( test_matrix );
 
     BOOST_UBLAS_TEST_END();
-
-    return EXIT_SUCCESS;
 }
