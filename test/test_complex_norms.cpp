@@ -10,6 +10,10 @@
 
 #include "utils.hpp"
 
+#if defined(_MSC_VER)
+#pragma warning(disable: 4244) // conversion, possible loss of data
+#endif
+
 using namespace boost::numeric::ublas;
 
 static const double TOL(1.0e-5); ///< Used for comparing two real numbers.
