@@ -22,6 +22,11 @@
 
 // Iterators based on ideas of Jeremy Siek
 
+#if defined(_MSC_VER)
+#pragma warning(push)
+#pragma warning(disable: 4244) // conversion, possible loss of data
+#endif
+
 namespace boost { namespace numeric { namespace ublas {
 
 #ifdef BOOST_UBLAS_STRICT_VECTOR_SPARSE
@@ -2211,5 +2216,9 @@ namespace boost { namespace numeric { namespace ublas {
     const typename coordinate_vector<T, IB, IA, TA>::value_type coordinate_vector<T, IB, IA, TA>::zero_ = value_type/*zero*/();
 
 }}}
+
+#if defined(_MSC_VER)
+#pragma warning(pop)
+#endif
 
 #endif

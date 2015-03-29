@@ -183,6 +183,8 @@ public:
     }
 
 private:
+    matrix_row_vector& operator=(const matrix_row_vector&);
+
     Matrix& matrix_;
 };
 
@@ -312,6 +314,8 @@ public:
     }
 
 private:
+    matrix_column_vector& operator=(const matrix_column_vector&);
+
     Matrix& matrix_;
 };
 
