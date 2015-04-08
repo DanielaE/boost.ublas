@@ -239,8 +239,8 @@ namespace boost { namespace numeric { namespace ublas {
         //
 
         const_pointer find_element (index_type i, index_type j) const {
-            index_type element1 (layout_type::index_M (i, j));
-            index_type element2 (layout_type::index_m (i, j));
+            index_type element1 (static_cast<index_type>(layout_type::index_M (i, j)));
+            index_type element2 (static_cast<index_type>(layout_type::index_m (i, j)));
 
             const array_size_type itv      = zero_based( index1_data_[element1] );
             const array_size_type itv_next = zero_based( index1_data_[element1+1] );
@@ -265,7 +265,7 @@ namespace boost { namespace numeric { namespace ublas {
 
     private:
         void storage_invariants () const {
-            BOOST_UBLAS_CHECK (index1_data_ [layout_type::size_M (size1_, size2_)] == k_based (nnz_), external_logic ());
+            BOOST_UBLAS_CHECK (index1_data_ [layout_type::size_M (size1_, size2_)] == k_based (static_cast<index_type>(nnz_)), external_logic ());
         }
         
         index_type size1_;

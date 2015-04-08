@@ -46,6 +46,7 @@ struct test_my_matrix_vector {
             v2 = ublas::prod (v1, m1);
             std::cout << "prod (v1, m1) = " << v2 << std::endl;
 #endif
+        (void)v1; (void)v2; (void)m1;
         }
     }
     void operator () () const {
