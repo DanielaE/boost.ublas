@@ -13,6 +13,8 @@
 #include "test3.hpp"
 
 int main () {
+    BOOST_UBLAS_NO_ERROR_POPUP
+
     test_vector ();
     test_matrix_vector ();
     test_matrix ();
