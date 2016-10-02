@@ -13,6 +13,26 @@
 #ifndef TEST3_H
 #define TEST3_H
 
+#ifdef _MSC_VER
+# include <stdio.h>
+# include <stdlib.h>
+# include <crtdbg.h>
+
+inline void myInvalidParameterHandler(const wchar_t* expression, const wchar_t* function, const wchar_t* file, unsigned int line, uintptr_t) {
+   wprintf(L"\nInvalid parameter detected in function %s. File: %s Line: %d\nExpression: %s\n", function, file, line, expression);
+   abort();
+}
+
+# define BOOST_UBLAS_NO_ERROR_POPUP \
+  _set_invalid_parameter_handler(myInvalidParameterHandler); \
+  _CrtSetReportMode(_CRT_ERROR, _CRTDBG_MODE_FILE); \
+  _CrtSetReportFile(_CRT_ERROR, _CRTDBG_FILE_STDOUT); \
+  _CrtSetReportMode(_CRT_ASSERT, _CRTDBG_MODE_FILE); \
+  _CrtSetReportFile(_CRT_ASSERT, _CRTDBG_FILE_STDOUT);
+#else
+# define BOOST_UBLAS_NO_ERROR_POPUP
+#endif
+
 #include <iostream>
 
 #include <boost/numeric/ublas/vector.hpp>
